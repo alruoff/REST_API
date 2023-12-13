@@ -1,0 +1,22 @@
+server:
+  tomcat:
+    relaxed-path-chars: ['[','{','}',']']
+    relaxed-query-chars: ['[','{','}',']']
+  port: 8190
+  servlet:
+    context-path: /api
+spring:
+  flyway:
+    url: jdbc:mysql://localhost:3306/test_DB
+    user: root
+    password: kObOx_326
+    locations: classpath:migrations
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_DB
+    username: root
+    password: kObOx_326
+  jpa:
+    hibernate.ddl-auto: validate
+    generate-ddl: false
+    show-sql: false
