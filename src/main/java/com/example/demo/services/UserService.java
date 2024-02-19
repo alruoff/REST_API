@@ -1,6 +1,5 @@
 package com.example.demo.services;
 
-import com.example.demo.entities.Customer;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
 import com.example.demo.repositories.UserRepository;
@@ -13,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -50,5 +48,14 @@ public class UserService implements UserDetailsService {
     public Optional<User> findByUsername(String userName) {
 
         return userRepository.findByLogin(userName);
+    }
+
+    public Optional<User> findByUserId(Long userId) {
+
+        return userRepository.findById(userId);
+    }
+    public void removeUser(User usr) {
+
+        userRepository.delete(usr);
     }
 }

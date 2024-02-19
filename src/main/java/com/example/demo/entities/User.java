@@ -2,9 +2,9 @@ package com.example.demo.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 
@@ -17,13 +17,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min =4 , max = 12)
+    @NotBlank(message = "Login should not be blank")
+    @Pattern(regexp = "^[a-zA-Z0-9а-яА-Я_]{4,12}$", message = "Login should be correct")
     @Column(name = "login", unique = true, nullable = false)
     private String login;
 
-    @NotEmpty(message = "Password should not be empty")
-    @Size(min =4 , max = 12)
+    @NotBlank(message = "Password should not be blank")
     @Column(name = "password")
     private String password;
 

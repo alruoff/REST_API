@@ -6,6 +6,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,9 @@ public class Customer {
     @Id
     @GeneratedValue
     private Long id;
+
+    @NotEmpty(message = "Fullname should be between 4 and 12 letters")
+    @Size(min =4 , max = 48)
     private String fullName; // иное, чем логин. Отдельное доп. имя в системе
 
     @CreationTimestamp
@@ -29,6 +35,8 @@ public class Customer {
     private LocalDateTime updated_at;
 
     private Boolean is_blocked;
+
+    @Email
     private String email;
     private String position; // роль сотрудника в системе
 
@@ -67,19 +75,3 @@ public class Customer {
                 '}';
     }
 }
-
-
-/*
-
-        @OneToOne(fetch = FetchType.EAGER)
-        @JoinTable(name = "user",
-                joinColumns = @JoinColumn(name = "id"),
-                inverseJoinColumns = @JoinColumn(name = "id"))
-
-
-    @OneToOne(mappedBy = "customer", cascade =  // есть все, кроме REMOVE
-    { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-
-    private User user;
-
- */

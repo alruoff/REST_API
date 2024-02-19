@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 import com.example.demo.entities.exceptiopns.LoginUniqException;
 
 
@@ -45,7 +48,7 @@ public class CustomerService {
 
             user.setCustomer(customer);
 
-            customerRepository.saveAndFlush(customer);
+            customerRepository.save(customer);
 
             userService.loadUserByUsername(login);
 
@@ -54,7 +57,18 @@ public class CustomerService {
 
     }
 
-    public void saveCustomer(Customer customer) {
-        customerRepository.saveAndFlush(customer);
+    public Boolean removeCustomer( Long userId) {
+
+        Optional<User> uId = userService.findByUserId(userId);
+
+        if (uId.isPresent()) {
+            userService.removeUser(uId.get());
+            return true;
+        }
+        else return false;
+
+    }
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
     }
 }

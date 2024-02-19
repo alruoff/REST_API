@@ -19,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     /**
-     * Позволяет посмотреть текущего пользователя
+     * Позволяет посмотреть текущего пользователя с его ролью в системе
      * @param principal
      * @return
      */

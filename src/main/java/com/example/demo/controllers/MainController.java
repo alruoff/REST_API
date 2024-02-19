@@ -24,10 +24,4 @@ public class MainController {
         return "Номе - current login is: " + principal.getName();
     }
 
-    @PutMapping("/initial")
-    public String initial() {
-
-        // mainService.initial();
-        return "Initial status OK";
-    }
 }

@@ -54,7 +54,7 @@ public class OrderController {
      * @param principal
      * @return список заказов у текущего пользователя
      */
-    @GetMapping("/all")
+    @GetMapping(value ="/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<String> getAllOrders(Principal principal) {
 
         User user = getUser(principal);
